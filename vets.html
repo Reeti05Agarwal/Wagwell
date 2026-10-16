@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a vet — Wagwell</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="utility"><div class="container">
+  <a href="urgent.html"><span class="dot"></span><span><span data-i18n="emerg">24/7 emergency line</span>: [EMERGENCY NUMBER]</span></a>
+  <div class="controls">
+    <label class="row" style="gap:.5rem"><span data-i18n="lang">Language</span>
+      <select class="pill-select js-lang"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select></label>
+    <div class="row" role="group" aria-label="Text size" style="gap:.25rem"><span data-i18n="size">Text size</span>
+      <button type="button" class="size-btn js-size" data-size="1" aria-pressed="true">A</button><button type="button" class="size-btn js-size" data-size="2" aria-pressed="false">A+</button><button type="button" class="size-btn js-size" data-size="3" aria-pressed="false">A++</button></div>
+    <button type="button" class="btn btn-light js-theme" aria-pressed="false" style="min-height:2.4rem">Dark mode</button>
+  </div>
+</div></div>
+
+<header class="site-header"><div class="container">
+  <a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#E8692F"/><circle cx="24" cy="10" r="7" fill="#7FC3EA"/><circle cx="17" cy="23" r="8" fill="#A8673C"/></svg>Wagwell</a>
+  <nav class="main-nav" aria-label="Main">
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="urgent.html" data-i18n="urgent">Urgent check</a>
+    <a href="vets.html" aria-current="page" data-i18n="vets">Find a vet</a>
+    <a href="booking.html" data-i18n="book">Book</a>
+    <a href="health.html" data-i18n="health">Health hub</a>
+  </nav>
+  <div class="row"><a href="login.html" style="font-weight:700;color:var(--ink);padding:.6rem .25rem" data-i18n="signin">Sign in</a><a class="btn btn-dark" href="booking.html"><span data-i18n="bookBtn">Book a visit</span> ›</a></div>
+</div></header>
+
+<section class="band band-sky">
+  <div class="container stack" style="gap:1.3rem">
+    <div class="stack" style="gap:.5rem"><h1>Find a vet who fits</h1>
+      <p class="lead">Filter by how you want to meet and the language you’re comfortable in. Tick up to three vets to compare them side by side.</p></div>
+    <div class="filters">
+      <div class="seg" role="radiogroup" aria-label="Visit type" id="modes">
+        <button type="button" role="radio" aria-checked="true" data-mode="any">Any</button>
+        <button type="button" role="radio" aria-checked="false" data-mode="clinic">In clinic</button>
+        <button type="button" role="radio" aria-checked="false" data-mode="video">Video call</button>
+        <button type="button" role="radio" aria-checked="false" data-mode="home">Home visit</button>
+      </div>
+      <div class="row" role="group" aria-label="Vet speaks"><strong>Speaks</strong>
+        <button type="button" class="chip js-speak" aria-pressed="false" data-lang="Hindi">Hindi</button>
+        <button type="button" class="chip js-speak" aria-pressed="false" data-lang="Marathi">Marathi</button></div>
+      <label class="check"><input type="checkbox" id="open-now"> Open now</label>
+      <label class="row" style="gap:.5rem;font-weight:700">Sort
+        <select class="pill-select" id="sort" style="min-height:2.75rem"><option value="soon">Soonest available</option><option value="near">Nearest first</option></select></label>
+    </div>
+  </div>
+</section>
+
+<main id="main" class="container stack" style="padding-top:2rem;padding-bottom:5rem;gap:1.3rem">
+  <p role="status" id="count" style="font-weight:700"></p>
+  <section class="panel panel-peach stack" id="compare" aria-labelledby="cmp-title" hidden>
+    <div class="row between"><h2 id="cmp-title" style="font-size:1.7rem">Side by side</h2><button type="button" class="btn btn-light" id="clear-compare">Clear comparison</button></div>
+    <div class="table-wrap"><table id="cmp-table"></table></div>
+  </section>
+  <p class="alert" role="alert" id="limit" hidden>You can compare up to 3 vets. Untick one to add another.</p>
+
+  <div class="split">
+    <section class="main-col" aria-label="Results">
+      <div id="results" class="stack"></div>
+      <div class="empty" id="empty" hidden>
+        <strong style="font-size:1.2rem">No vets match all of these</strong>
+        <span class="muted">Video calls run until 10 PM — or remove a language filter.</span>
+        <button type="button" class="btn btn-dark" id="reset">Reset filters</button>
+      </div>
+    </section>
+    <aside class="side-col" aria-label="Map of vets near Baner, Pune">
+      <div class="map" id="map"><span class="label">[Map: Baner, Pune]</span><span class="me" aria-hidden="true"></span><span class="legend">Black dot = you. Numbers match the list.</span></div>
+    </aside>
+  </div>
+</main>
+
+<script>
+  const VETS = [
+    { id: 1, ini: 'KM', tint: '#FCE4DA', name: 'Dr. Kavya Menon', role: 'General practice & vaccines', langs: ['English', 'Hindi', 'Malayalam'], modes: ['clinic', 'video', 'home'], km: 1.4, open: true, rank: 1, next: 'Today 5:30 PM', slots: ['5:30 PM', '6:00 PM', '7:15 PM'], x: 52, y: 38 },
+    { id: 2, ini: 'RD', tint: '#CDE8F8', name: 'Dr. Rohan Deshpande', role: 'Orthopaedics & surgery', langs: ['English', 'Marathi', 'Hindi'], modes: ['clinic'], km: 3.2, open: true, rank: 4, next: 'Tomorrow 10:00 AM', slots: ['Tue 10:00', 'Tue 10:30', 'Tue 12:00'], x: 22, y: 62 },
+    { id: 3, ini: 'FS', tint: '#FDF0C9', name: 'Dr. Farah Siddiqui', role: 'Skin & allergies', langs: ['English', 'Hindi', 'Urdu'], modes: ['clinic', 'video'], km: 2.6, open: false, rank: 5, next: 'Mon 9:30 AM', slots: ['Mon 9:30', 'Mon 11:00'], x: 70, y: 22 },
+    { id: 4, ini: 'AK', tint: '#DDF1E3', name: 'Dr. Aditya Kulkarni', role: 'Exotics — birds, rabbits, reptiles', langs: ['English', 'Marathi'], modes: ['clinic', 'home'], km: 5.1, open: true, rank: 3, next: 'Today 6:45 PM', slots: ['6:45 PM', '8:00 PM'], x: 76, y: 70 },
+    { id: 5, ini: 'NJ', tint: '#EDE3FA', name: 'Dr. Neha Joshi', role: 'Behaviour & nutrition', langs: ['English', 'Hindi', 'Marathi'], modes: ['video'], km: null, open: true, rank: 2, next: 'Today 5:00 PM', slots: ['5:00 PM', '5:20 PM', '5:40 PM'], x: null, y: null }
+  ];
+  const MODE = { clinic: 'In clinic', video: 'Video call', home: 'Home visit' };
+  const state = { mode: 'any', speaks: new Set(), open: false, sort: 'soon', cmp: [] };
+  const $ = s => document.querySelector(s);
+  const dist = v => v.km == null ? 'Online only' : v.km + ' km';
+
+  function render() {
+    let list = VETS.filter(v => (state.mode === 'any' || v.modes.includes(state.mode)) && (!state.open || v.open) && [...state.speaks].every(l => v.langs.includes(l)));
+    list.sort((a, b) => state.sort === 'near' ? (a.km ?? 999) - (b.km ?? 999) : a.rank - b.rank);
+
+    $('#results').innerHTML = list.map(v => `
+      <article class="vet">
+        <div class="photo" role="img" aria-label="Photo of ${v.name}" style="background:${v.tint}">${v.ini}<span class="pin" aria-label="Map pin ${v.id}">${v.id}</span></div>
+        <div class="info">
+          <div class="row between"><h2>${v.name}</h2><strong>${dist(v)}</strong></div>
+          <span style="color:var(--ink2)">${v.role}</span>
+          <span class="muted" style="font-size:.9rem">Speaks ${v.langs.join(', ')}</span>
+          <div class="row" style="gap:.4rem">${v.modes.map(m => `<span class="pill">${MODE[m]}</span>`).join('')}</div>
+          <div class="row" style="gap:.5rem;margin-top:.4rem"><strong style="font-size:.9rem">Quick book:</strong>
+            ${v.slots.map(s => `<a class="btn btn-dark" href="booking.html" aria-label="Book ${v.name} at ${s}">${s}</a>`).join('')}</div>
+        </div>
+        <label class="compare-toggle"><input type="checkbox" data-cmp="${v.id}" ${state.cmp.includes(v.id) ? 'checked' : ''}> Compare</label>
+      </article>`).join('');
+    $('#empty').hidden = list.length > 0;
+    $('#count').textContent = `${list.length} ${list.length === 1 ? 'vet matches' : 'vets match'}${state.cmp.length ? ` · ${state.cmp.length} ticked to compare` : ''}`;
+
+    // Map pins for the visible vets
+    document.querySelectorAll('.marker').forEach(m => m.remove());
+    list.filter(v => v.x != null).forEach(v => {
+      const m = document.createElement('span');
+      m.className = 'marker'; m.setAttribute('aria-hidden', 'true');
+      m.style.left = v.x + '%'; m.style.top = v.y + '%';
+      m.innerHTML = `<span>${v.id}</span>`;
+      $('#map').appendChild(m);
+    });
+
+    // Comparison table
+    const chosen = VETS.filter(v => state.cmp.includes(v.id));
+    $('#compare').hidden = chosen.length < 2;
+    if (chosen.length >= 2) {
+      const row = (label, fn) => `<tr><th scope="row" class="muted">${label}</th>${chosen.map(v => `<td>${fn(v)}</td>`).join('')}</tr>`;
+      $('#cmp-table').innerHTML = `<thead><tr><th scope="col"><span class="sr-only">Detail</span></th>${chosen.map(v => `<th scope="col">${v.name}</th>`).join('')}</tr></thead><tbody>
+        ${row('Focus', v => v.role)}${row('Next slot', v => `<strong>${v.next}</strong>`)}${row('Distance', dist)}
+        ${row('Visit types', v => v.modes.map(m => MODE[m]).join(', '))}${row('Speaks', v => v.langs.join(', '))}${row('Fee', () => '[PRICE]')}</tbody>`;
+    }
+  }
+
+  $('#modes').addEventListener('click', e => {
+    const b = e.target.closest('[data-mode]'); if (!b) return;
+    state.mode = b.dataset.mode;
+    document.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-checked', x === b));
+    render();
+  });
+  document.querySelectorAll('.js-speak').forEach(b => b.addEventListener('click', () => {
+    const l = b.dataset.lang;
+    state.speaks.has(l) ? state.speaks.delete(l) : state.speaks.add(l);
+    b.setAttribute('aria-pressed', state.speaks.has(l)); render();
+  }));
+  $('#open-now').addEventListener('change', e => { state.open = e.target.checked; render(); });
+  $('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  $('#results').addEventListener('change', e => {
+    const id = +e.target.dataset.cmp; if (!id) return;
+    if (e.target.checked) {
+      if (state.cmp.length >= 3) { e.target.checked = false; $('#limit').hidden = false; return; }   // error prevention: cap at 3
+      state.cmp.push(id);
+    } else state.cmp = state.cmp.filter(x => x !== id);
+    $('#limit').hidden = true; render();
+  });
+  $('#clear-compare').addEventListener('click', () => { state.cmp = []; $('#limit').hidden = true; render(); });
+  $('#reset').addEventListener('click', () => {
+    state.mode = 'any'; state.speaks.clear(); state.open = false; $('#open-now').checked = false;
+    document.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-checked', x.dataset.mode === 'any'));
+    document.querySelectorAll('.js-speak').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    render();
+  });
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Urgent check — Wagwell</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="utility"><div class="container">
+  <a href="urgent.html"><span class="dot"></span><span><span data-i18n="emerg">24/7 emergency line</span>: [EMERGENCY NUMBER]</span></a>
+  <div class="controls">
+    <label class="row" style="gap:.5rem"><span data-i18n="lang">Language</span>
+      <select class="pill-select js-lang"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select></label>
+    <div class="row" role="group" aria-label="Text size" style="gap:.25rem"><span data-i18n="size">Text size</span>
+      <button type="button" class="size-btn js-size" data-size="1" aria-pressed="true">A</button><button type="button" class="size-btn js-size" data-size="2" aria-pressed="false">A+</button><button type="button" class="size-btn js-size" data-size="3" aria-pressed="false">A++</button></div>
+    <button type="button" class="btn btn-light js-theme" aria-pressed="false" style="min-height:2.4rem">Dark mode</button>
+  </div>
+</div></div>
+
+<header class="site-header"><div class="container">
+  <a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#E8692F"/><circle cx="24" cy="10" r="7" fill="#7FC3EA"/><circle cx="17" cy="23" r="8" fill="#A8673C"/></svg>Wagwell</a>
+  <nav class="main-nav" aria-label="Main">
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="urgent.html" aria-current="page" data-i18n="urgent">Urgent check</a>
+    <a href="vets.html" data-i18n="vets">Find a vet</a>
+    <a href="booking.html" data-i18n="book">Book</a>
+    <a href="health.html" data-i18n="health">Health hub</a>
+  </nav>
+  <div class="row"><a href="login.html" style="font-weight:700;color:var(--ink);padding:.6rem .25rem" data-i18n="signin">Sign in</a><a class="btn btn-dark" href="booking.html"><span data-i18n="bookBtn">Book a visit</span> ›</a></div>
+</div></header>
+
+<section class="band band-danger">
+  <div class="container row between" style="gap:1.5rem">
+    <div class="row" style="gap:1.5rem;flex:1 1 34rem;flex-wrap:nowrap">
+      <svg width="120" height="120" viewBox="0 0 100 100" aria-hidden="true" style="flex-shrink:0"><ellipse cx="27" cy="50" rx="12" ry="24" fill="#1F1B1A" transform="rotate(15 27 50)"/><ellipse cx="73" cy="50" rx="12" ry="24" fill="#1F1B1A" transform="rotate(-15 73 50)"/><circle cx="50" cy="54" r="30" fill="#FFF8F2"/><path d="M36 50 q4 -4 8 0 M56 50 q4 -4 8 0" stroke="#1F1B1A" stroke-width="3" stroke-linecap="round" fill="none"/><ellipse cx="50" cy="64" rx="5" ry="3.5" fill="#1F1B1A"/><g transform="rotate(30 67 32)"><rect x="56" y="28" width="22" height="9" rx="3" fill="#fff" stroke="#B8322A" stroke-width="2"/><path d="M63 32 h8 M67 28 v8" stroke="#B8322A" stroke-width="2"/></g></svg>
+      <div class="stack" style="gap:.5rem"><h1 id="main-title">Is it an emergency?</h1>
+        <p class="lead">Tick what you’ve noticed. Your answer updates as you go. This is a guide, not a diagnosis — if you’re unsure, call.</p></div>
+    </div>
+    <a class="btn btn-danger btn-lg" href="tel:[EMERGENCY-NUMBER]"><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call the 24/7 vet line</a>
+  </div>
+</section>
+
+<main id="main" class="container stack" style="padding-top:3rem;padding-bottom:5rem;gap:2.5rem">
+  <div class="split">
+    <div class="main-col" style="gap:1.4rem">
+      <fieldset class="symptoms red" style="background:var(--peach)">
+        <legend>Danger signs</legend>
+        <div class="grid">
+          <label class="symptom"><input type="checkbox" data-level="red"> Struggling to breathe</label>
+          <label class="symptom"><input type="checkbox" data-level="red"> Bleeding that won’t stop</label>
+          <label class="symptom"><input type="checkbox" data-level="red"> Collapsed or can’t stand</label>
+          <label class="symptom"><input type="checkbox" data-level="red"> Seizure or fitting</label>
+          <label class="symptom"><input type="checkbox" data-level="red"> Ate something toxic (chocolate, medicine, rat poison)</label>
+          <label class="symptom"><input type="checkbox" data-level="red"> Swollen, hard belly and retching</label>
+        </div>
+      </fieldset>
+      <fieldset class="symptoms" style="background:var(--sky)">
+        <legend>Other changes</legend>
+        <div class="grid">
+          <label class="symptom"><input type="checkbox" data-level="amber"> Vomited more than twice today</label>
+          <label class="symptom"><input type="checkbox" data-level="amber"> Not eating for over a day</label>
+          <label class="symptom"><input type="checkbox" data-level="amber"> Limping or won’t put weight on a leg</label>
+          <label class="symptom"><input type="checkbox" data-level="amber"> Red, cloudy or swollen eye</label>
+          <label class="symptom"><input type="checkbox" id="none"> None of these</label>
+        </div>
+        <button type="button" class="link-btn" id="clear" style="color:var(--ink);margin-top:.5rem">Clear my answers</button>
+      </fieldset>
+    </div>
+
+    <section class="result" id="result" data-level="empty" aria-live="polite" aria-label="Your result">
+      <span class="tag" id="r-tag">Your result</span>
+      <h2 id="r-title" style="font-size:1.9rem">Tick what you’ve noticed</h2>
+      <p id="r-text" style="font-size:1.08rem">Your advice appears here straight away. Nothing is sent until you choose to call or book.</p>
+      <div class="stack" id="r-actions" style="gap:.6rem"></div>
+    </section>
+  </div>
+
+  <section class="stack" aria-labelledby="open-title">
+    <h2 id="open-title">Open right now near you</h2>
+    <div class="grid">
+      <article class="card stack" style="gap:.6rem"><div class="row between"><h3>Wagwell 24×7 Animal Hospital, Baner</h3><strong>2.1 km</strong></div><span class="open-badge">● Open 24 hours</span><span class="muted">ICU, X-ray and surgery on site · parking at the gate</span><div class="row"><a class="btn btn-danger" href="tel:[CLINIC-NUMBER]">Call</a><a class="btn btn-light" href="#">Directions</a></div></article>
+      <article class="card stack" style="gap:.6rem"><div class="row between"><h3>CityPaws Emergency, Kothrud</h3><strong>4.8 km</strong></div><span class="open-badge">● Open until 2:00 AM</span><span class="muted">Emergency vet on duty · exotic pets accepted</span><div class="row"><a class="btn btn-danger" href="tel:[CLINIC-NUMBER]">Call</a><a class="btn btn-light" href="#">Directions</a></div></article>
+      <article class="card stack" style="gap:.6rem"><div class="row between"><h3>Aundh Animal Clinic</h3><strong>6.3 km</strong></div><span class="open-badge">● Open until 11:00 PM</span><span class="muted">General emergencies · wheelchair access</span><div class="row"><a class="btn btn-danger" href="tel:[CLINIC-NUMBER]">Call</a><a class="btn btn-light" href="#">Directions</a></div></article>
+    </div>
+  </section>
+
+  <section class="stack" aria-labelledby="aid-title" style="max-width:54rem;gap:.75rem">
+    <h2 id="aid-title">While you’re on the way</h2>
+    <details><summary>Bleeding</summary><p>Press a clean cloth firmly on the wound and keep the pressure on. Don’t keep lifting it to check.</p></details>
+    <details><summary>Suspected poisoning</summary><p>Don’t make your pet vomit unless a vet tells you to. Bring the packet or a photo of what they ate.</p></details>
+    <details><summary>Heatstroke</summary><p>Move them to shade and wet their coat with cool — not ice-cold — water. Keep the car air-conditioned.</p></details>
+  </section>
+</main>
+
+<script>
+  const boxes = [...document.querySelectorAll('.symptom input')];
+  const none = document.getElementById('none');
+  const RESULTS = {
+    empty: ['Your result', 'Tick what you’ve noticed', 'Your advice appears here straight away. Nothing is sent until you choose to call or book.', ''],
+    red: ['Emergency', 'Go to an emergency clinic now', 'Don’t wait for an appointment. Call ahead on the way so the team is ready for you.',
+      '<a class="btn btn-light btn-lg" href="tel:[CLINIC-NUMBER]" style="color:#8E1C15">Call nearest open clinic</a>'],
+    amber: ['Soon', 'See a vet within 24 hours', 'Not an emergency right now, but it shouldn’t wait for a routine slot. If things get worse, call.',
+      '<a class="btn btn-dark btn-lg" href="booking.html" style="background:#1F1B1A;color:#fff">Book today’s first slot · 5:30 PM</a><a class="btn btn-light btn-lg" href="booking.html" style="color:#1F1B1A;background:#fff">Video call a vet now · wait [X] min</a>'],
+    green: ['Not urgent', 'Probably fine to book as usual', 'Keep an eye on them. A routine visit or a quick video call can settle any doubts.',
+      '<a class="btn btn-dark btn-lg" href="booking.html">Book a routine visit</a>']
+  };
+  function update() {
+    let level = 'empty';
+    if (boxes.some(b => b.checked && b.dataset.level === 'red')) level = 'red';
+    else if (boxes.some(b => b.checked && b.dataset.level === 'amber')) level = 'amber';
+    else if (none.checked) level = 'green';
+    const [tag, title, text, actions] = RESULTS[level];
+    const r = document.getElementById('result');
+    r.dataset.level = level;
+    document.getElementById('r-tag').textContent = tag;
+    document.getElementById('r-title').textContent = title;
+    document.getElementById('r-text').textContent = text;
+    document.getElementById('r-actions').innerHTML = actions;
+  }
+  boxes.forEach(b => b.addEventListener('change', () => {
+    if (b === none && none.checked) boxes.forEach(x => { if (x !== none) x.checked = false; });   // "None" clears the others
+    if (b !== none && b.checked) none.checked = false;                                         // any symptom clears "None"
+    update();
+  }));
+  document.getElementById('clear').addEventListener('click', () => { boxes.forEach(b => b.checked = false); update(); });
+</script>
+</body>
+</html>

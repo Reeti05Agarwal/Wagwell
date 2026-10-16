@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a visit — Wagwell</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="utility"><div class="container">
+  <a href="urgent.html"><span class="dot"></span><span><span data-i18n="emerg">24/7 emergency line</span>: [EMERGENCY NUMBER]</span></a>
+  <div class="controls">
+    <label class="row" style="gap:.5rem"><span data-i18n="lang">Language</span>
+      <select class="pill-select js-lang"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select></label>
+    <div class="row" role="group" aria-label="Text size" style="gap:.25rem"><span data-i18n="size">Text size</span>
+      <button type="button" class="size-btn js-size" data-size="1" aria-pressed="true">A</button><button type="button" class="size-btn js-size" data-size="2" aria-pressed="false">A+</button><button type="button" class="size-btn js-size" data-size="3" aria-pressed="false">A++</button></div>
+    <button type="button" class="btn btn-light js-theme" aria-pressed="false" style="min-height:2.4rem">Dark mode</button>
+  </div>
+</div></div>
+
+<header class="site-header"><div class="container">
+  <a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#E8692F"/><circle cx="24" cy="10" r="7" fill="#7FC3EA"/><circle cx="17" cy="23" r="8" fill="#A8673C"/></svg>Wagwell</a>
+  <nav class="main-nav" aria-label="Main">
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="urgent.html" data-i18n="urgent">Urgent check</a>
+    <a href="vets.html" data-i18n="vets">Find a vet</a>
+    <a href="booking.html" aria-current="page" data-i18n="book">Book</a>
+    <a href="health.html" data-i18n="health">Health hub</a>
+  </nav>
+  <a class="avatar" href="health.html" aria-label="Your account">R</a>
+</div></header>
+
+<main id="main" class="container" style="padding-top:2.6rem;padding-bottom:5rem">
+  <div class="split" id="flow">
+    <div class="main-col" style="gap:1.3rem">
+      <section class="panel panel-blush stack" aria-labelledby="s1" style="gap:.75rem">
+        <h1 id="s1" class="step-title"><span class="step-num">1</span>Your visit, in one sentence</h1>
+        <p class="sentence">I’d like a
+          <select aria-label="Service" id="svc"><option value="General check-up">general check-up</option><option value="Vaccination">vaccination</option><option value="Dental cleaning">dental cleaning</option><option value="Grooming">grooming session</option></select>
+          for
+          <select aria-label="Pet" id="pet"><option>Bruno</option><option>Mishti</option></select>
+          <select aria-label="Visit type" id="mode"><option value="clinic">at the clinic</option><option value="video">on a video call</option><option value="home">at my home</option></select>
+          with
+          <select aria-label="Vet" id="vet"><option>Any available vet</option><option>Dr. Kavya Menon</option><option>Dr. Neha Joshi</option><option>Dr. Aditya Kulkarni</option></select>.
+        </p>
+        <!-- Error prevention + recovery: impossible combinations are explained with one-tap fixes -->
+        <div class="fix-box" role="alert" id="conflict" hidden>
+          <strong style="flex:1 1 18rem"><span id="conflict-svc"></span> can’t be done over video. How would you like to meet instead?</strong>
+          <button type="button" class="btn btn-dark" data-fix="clinic">Switch to clinic</button>
+          <button type="button" class="btn btn-light" data-fix="home">Switch to home visit</button>
+        </div>
+      </section>
+
+      <section class="panel panel-sky stack" aria-labelledby="s2">
+        <h2 id="s2" class="step-title"><span class="step-num">2</span>When?</h2>
+        <div class="day-grid" role="radiogroup" aria-label="Day" id="days"></div>
+        <div class="stack" id="slots" style="gap:.75rem"></div>
+      </section>
+
+      <section class="panel panel-peach stack" aria-labelledby="s3">
+        <h2 id="s3" class="step-title"><span class="step-num">3</span>How would you like to pay?</h2>
+        <div class="pay-grid" role="radiogroup" aria-label="Payment method">
+          <button type="button" class="pay" role="radio" aria-checked="false" data-pay="upi"><strong>UPI</strong><span>GPay, PhonePe, Paytm</span></button>
+          <button type="button" class="pay" role="radio" aria-checked="false" data-pay="card"><strong>Card</strong><span>Debit or credit</span></button>
+          <button type="button" class="pay" role="radio" aria-checked="false" data-pay="clinic"><strong>Pay at visit</strong><span id="clinic-note">Cash or card on the day</span></button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="side-col receipt" aria-label="Receipt">
+      <div class="row"><svg width="56" height="56" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="27" cy="46" rx="12" ry="24" fill="#8A5230" transform="rotate(15 27 46)"/><ellipse cx="73" cy="46" rx="12" ry="24" fill="#8A5230" transform="rotate(-15 73 46)"/><circle cx="50" cy="52" r="30" fill="#FCE4DA"/><circle cx="40" cy="50" r="4" fill="#1F1B1A"/><circle cx="60" cy="50" r="4" fill="#1F1B1A"/><ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#1F1B1A"/></svg><h2 style="font-size:1.6rem">Your visit</h2></div>
+      <dl>
+        <div><dt>Pet</dt><dd data-r="pet"></dd></div><div><dt>Service</dt><dd data-r="svc"></dd></div>
+        <div><dt>Visit</dt><dd data-r="mode"></dd></div><div><dt>Vet</dt><dd data-r="vet"></dd></div><div><dt>When</dt><dd data-r="when"></dd></div>
+      </dl>
+      <div class="rule"><div class="row between"><span>Consultation</span><span>[PRICE]</span></div><div class="row between"><span>Booking fee</span><span>₹0</span></div><div class="row between total"><span>Total</span><span>[PRICE]</span></div></div>
+      <div class="rule"><p id="todo-title" style="font-weight:700">Still to choose</p>
+        <ul class="todo"><li data-need="combo">A visit that works</li><li data-need="time">A day and time</li><li data-need="pay">A payment method</li></ul></div>
+      <button type="button" class="btn btn-dark btn-lg" id="confirm" disabled aria-describedby="todo-title">Confirm &amp; pay ›</button>
+      <p class="muted" style="font-size:.85rem">Free to cancel or move until 2 hours before.</p>
+    </aside>
+  </div>
+
+  <section class="stack" id="done" role="status" aria-live="polite" hidden style="max-width:52rem;margin:0 auto;align-items:center;text-align:center;gap:1.5rem">
+    <svg width="200" height="150" viewBox="0 0 200 150" aria-hidden="true"><path d="M30 30 l14 -12 M40 56 l20 -2 M160 26 l-12 -12 M168 52 l-20 -2" stroke="#E8692F" stroke-width="5" stroke-linecap="round"/><ellipse cx="62" cy="38" rx="16" ry="30" fill="#8A5230" transform="rotate(20 62 38)"/><ellipse cx="138" cy="38" rx="16" ry="30" fill="#8A5230" transform="rotate(-20 138 38)"/><circle cx="100" cy="76" r="54" fill="#A8673C"/><ellipse cx="100" cy="98" rx="28" ry="20" fill="#F3D9C2"/><path d="M76 66 q8 -8 16 0 M108 66 q8 -8 16 0" stroke="#1F1B1A" stroke-width="5" stroke-linecap="round" fill="none"/><ellipse cx="100" cy="90" rx="9" ry="6" fill="#1F1B1A"/><path d="M90 104 q10 20 20 0" fill="#E9767A"/></svg>
+    <h1 id="done-title">Booked!</h1>
+    <div class="ticket">
+      <div style="flex:1 1 22rem" class="stack"><span class="muted" style="font-weight:700;font-size:.85rem;letter-spacing:.06em">BOOKING [REF-NO]</span>
+        <strong id="d-what" style="font-family:var(--display);font-size:1.6rem"></strong><span id="d-when" style="font-size:1.15rem"></span><span id="d-vet"></span><span id="d-pay"></span></div>
+      <div class="qr-side"><div class="qr" role="img" aria-label="QR code placeholder for check-in"></div><strong id="d-qr" style="font-size:.85rem;text-align:center"></strong></div>
+    </div>
+    <div class="row" style="justify-content:center"><a class="btn btn-dark btn-lg" href="#">Add to calendar</a><a class="btn btn-sky btn-lg" href="#">Share with family on WhatsApp</a><a class="link-btn" href="booking.html" style="color:var(--ink)">Book another</a></div>
+  </section>
+</main>
+
+<script>
+  const $ = s => document.querySelector(s);
+  const S = { day: null, time: null, pay: null };
+  const MODE = { clinic: 'In clinic', video: 'Video call', home: 'Home visit' };
+  const DAYS = [['Fri', 16, 6], ['Sat', 17, 0], ['Sun', 18, 3], ['Mon', 19, 9], ['Tue', 20, 8], ['Wed', 21, 7], ['Thu', 22, 5]];
+  const TIMES = { Morning: ['9:00 AM', '9:30 AM', '11:00 AM'], Afternoon: ['1:30 PM', '3:00 PM', '4:15 PM'], Evening: ['5:30 PM', '6:45 PM', '8:00 PM'] };
+
+  $('#days').innerHTML = DAYS.map(([d, n, free]) => `<button type="button" class="day" role="radio" aria-checked="false" data-day="${d} ${n} Oct"
+     ${free ? '' : 'disabled'} aria-label="${d} ${n} October, ${free ? free + ' slots free' : 'fully booked'}"><small>${d}</small><b>${n}</b><small>${free ? free + ' free' : 'Full'}</small></button>`).join('');
+
+  function renderSlots() {
+    $('#slots').innerHTML = !S.day
+      ? '<div class="slot-row"><span>Morning</span><span class="pill" style="border:2px dashed var(--muted);background:transparent;min-height:2.75rem">Pick a day first</span></div>'
+      : Object.entries(TIMES).map(([g, ts]) => `<div class="slot-row" role="radiogroup" aria-label="${g} times"><span>${g}</span>
+          ${ts.map(t => `<button type="button" class="slot" role="radio" aria-checked="${S.time === t}" data-time="${t}">${t}</button>`).join('')}</div>`).join('');
+  }
+
+  function sync() {
+    const svc = $('#svc').value, mode = $('#mode').value;
+    const conflict = mode === 'video' && svc !== 'General check-up';
+    $('#conflict').hidden = !conflict; $('#conflict-svc').textContent = svc;
+
+    // Video calls are prepaid — disable "Pay at visit" and explain why
+    const payClinic = document.querySelector('[data-pay="clinic"]');
+    payClinic.disabled = mode === 'video';
+    $('#clinic-note').textContent = mode === 'video' ? 'Not for video calls — they’re paid in advance' : 'Cash or card on the day';
+    if (mode === 'video' && S.pay === 'clinic') S.pay = null;
+    document.querySelectorAll('.pay').forEach(b => b.setAttribute('aria-checked', b.dataset.pay === S.pay));
+    document.querySelectorAll('.day').forEach(b => b.setAttribute('aria-checked', b.dataset.day === S.day));
+
+    const when = S.day && S.time ? `${S.day} · ${S.time}` : '—';
+    const vals = { pet: $('#pet').value, svc, mode: MODE[mode], vet: $('#vet').value, when };
+    document.querySelectorAll('[data-r]').forEach(el => el.textContent = vals[el.dataset.r]);
+
+    const need = { combo: !conflict, time: !!(S.day && S.time), pay: !!S.pay };
+    document.querySelectorAll('[data-need]').forEach(li => li.classList.toggle('ok', need[li.dataset.need]));
+    const ready = Object.values(need).every(Boolean);
+    $('#confirm').disabled = !ready;
+    $('#todo-title').textContent = ready ? 'All set — ready to confirm' : 'Still to choose';
+    return { vals, mode };
+  }
+
+  ['svc', 'pet', 'mode', 'vet'].forEach(id => $('#' + id).addEventListener('change', sync));
+  document.querySelectorAll('[data-fix]').forEach(b => b.addEventListener('click', () => { $('#mode').value = b.dataset.fix; sync(); }));
+  $('#days').addEventListener('click', e => { const b = e.target.closest('.day'); if (!b || b.disabled) return; S.day = b.dataset.day; S.time = null; renderSlots(); sync(); });
+  $('#slots').addEventListener('click', e => { const b = e.target.closest('.slot'); if (!b) return; S.time = b.dataset.time; renderSlots(); sync(); });
+  document.querySelectorAll('.pay').forEach(b => b.addEventListener('click', () => { if (!b.disabled) { S.pay = b.dataset.pay; sync(); } }));
+
+  $('#confirm').addEventListener('click', () => {
+    const { vals, mode } = sync();
+    $('#flow').hidden = true; $('#done').hidden = false;
+    $('#done-title').textContent = `Booked! See you soon, ${vals.pet}.`;
+    $('#d-what').textContent = `${vals.svc} · ${vals.mode}`;
+    $('#d-when').textContent = vals.when; $('#d-vet').textContent = vals.vet;
+    $('#d-pay').textContent = S.pay === 'clinic' ? 'Pay at the visit' : `Paid by ${S.pay === 'upi' ? 'UPI' : 'card'} · receipt sent by email`;
+    $('#d-qr').textContent = mode === 'video' ? 'Join link appears here 10 min before' : mode === 'home' ? 'Track the vet’s arrival here' : 'Scan at the desk to check in';
+    window.scrollTo({ top: 0 });
+  });
+  renderSlots(); sync();
+</script>
+</body>
+</html>

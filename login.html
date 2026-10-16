@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — Wagwell</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="auth">
+  <section class="auth-art" aria-label="About Wagwell">
+    <a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#E8692F"/><circle cx="24" cy="10" r="7" fill="#7FC3EA"/><circle cx="17" cy="23" r="8" fill="#A8673C"/></svg>Wagwell</a>
+    <div class="stack">
+      <svg viewBox="0 0 320 220" style="width:100%;max-width:24rem" aria-hidden="true">
+        <ellipse cx="160" cy="206" rx="140" ry="10" fill="#000" opacity=".06"/>
+        <path d="M232 120 q34 -20 26 -64" stroke="#A8673C" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <ellipse cx="190" cy="150" rx="66" ry="44" fill="#A8673C"/><rect x="142" y="170" width="22" height="36" rx="11" fill="#8A5230"/><rect x="212" y="170" width="22" height="36" rx="11" fill="#8A5230"/>
+        <circle cx="128" cy="104" r="46" fill="#A8673C"/><ellipse cx="152" cy="80" rx="16" ry="30" fill="#6E3E22" transform="rotate(-18 152 80)"/>
+        <ellipse cx="102" cy="122" rx="26" ry="19" fill="#F3D9C2"/><ellipse cx="88" cy="114" rx="8" ry="6" fill="#1F1B1A"/><circle cx="126" cy="94" r="5" fill="#1F1B1A"/>
+        <path d="M146 136 q18 14 36 2" stroke="#E8692F" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <rect x="44" y="40" width="58" height="40" rx="12" fill="#fff"/><path d="M56 80 l-6 12 l16 -12" fill="#fff"/>
+        <circle cx="60" cy="60" r="4" fill="#1F1B1A"/><circle cx="73" cy="60" r="4" fill="#1F1B1A"/><circle cx="86" cy="60" r="4" fill="#1F1B1A"/>
+      </svg>
+      <h1 data-i18n="authTitle">Every wag, on record.</h1>
+      <p class="lead" data-i18n="authSub">Sign in with your mobile number — no password to remember.</p>
+    </div>
+    <span style="color:var(--ink2);font-size:.9rem">Pet emergency? Call <a href="tel:[EMERGENCY-NUMBER]" style="font-weight:700">[EMERGENCY NUMBER]</a></span>
+  </section>
+
+  <main class="auth-main" id="main">
+    <div class="auth-box">
+      <fieldset style="border:0;margin:0;padding:0">
+        <legend style="font-weight:700;margin-bottom:.6rem;padding:0">Choose your language · भाषा निवडा</legend>
+        <div class="lang-pick">
+          <button type="button" class="js-lang-btn" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" class="js-lang-btn" data-lang="hi" aria-pressed="false">हिन्दी</button>
+          <button type="button" class="js-lang-btn" data-lang="mr" aria-pressed="false">मराठी</button>
+        </div>
+      </fieldset>
+
+      <form class="stack" id="phone-step" novalidate>
+        <div><h2 data-i18n="signInUp" style="font-size:2.1rem">Sign in or sign up</h2><p class="muted">We’ll text you a one-time code.</p></div>
+        <div class="field">
+          <label for="phone" data-i18n="mobile">Mobile number</label>
+          <div class="phone-wrap" id="phone-wrap"><span>+91</span><input id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98XXXXXXXX" aria-describedby="phone-msg"></div>
+          <span class="msg" id="phone-msg" aria-live="polite">10 digits, no spaces needed</span>
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg"><span data-i18n="sendCode">Send code</span> ›</button>
+      </form>
+
+      <form class="stack" id="code-step" novalidate hidden>
+        <div><h2 data-i18n="enterCode" style="font-size:2.1rem">Enter the code</h2>
+          <p class="muted">Sent to +91 <span id="sent-to"></span> · <button type="button" class="link-btn" id="change">Change number</button></p></div>
+        <div class="field">
+          <label for="otp">6-digit code</label>
+          <input class="input otp" id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" aria-describedby="otp-msg">
+          <span class="msg" id="otp-msg" aria-live="polite">Tip: your phone may fill this in for you.</span>
+        </div>
+        <button type="submit" class="btn btn-dark btn-lg"><span data-i18n="verify">Verify and continue</span> ›</button>
+        <p class="muted" style="font-size:.9rem">Didn’t get it? You can resend in <span id="timer">0:30</span>, or get the code on a voice call.</p>
+      </form>
+
+      <div class="panel stack" id="success" role="status" hidden style="background:var(--ok-soft)">
+        <strong style="font-family:var(--display);font-size:1.7rem">You’re in, welcome back!</strong>
+        <span>Bruno and Mishti’s records are ready.</span>
+        <a class="btn btn-dark btn-lg" href="health.html">Go to Health hub ›</a>
+      </div>
+
+      <div class="divider">or</div>
+      <a class="btn btn-sky btn-lg" href="#">Use email instead</a>
+      <a class="btn btn-peach btn-lg" href="booking.html">Continue as guest and book</a>
+      <p class="muted" style="font-size:.85rem;text-align:center">New here? The same code creates your account. By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+  const $ = s => document.querySelector(s);
+  const phone = $('#phone'), wrap = $('#phone-wrap'), pmsg = $('#phone-msg');
+  const digits = () => phone.value.replace(/\D/g, '');
+
+  // Live feedback while typing
+  phone.addEventListener('input', () => {
+    const ok = digits().length === 10;
+    wrap.className = 'phone-wrap' + (ok ? ' valid' : '');
+    phone.removeAttribute('aria-invalid');
+    pmsg.className = 'msg' + (ok ? ' ok' : '');
+    pmsg.textContent = ok ? '✓ Looks good' : '10 digits, no spaces needed';
+  });
+  $('#phone-step').addEventListener('submit', e => {
+    e.preventDefault();
+    const d = digits();
+    if (d.length !== 10) {
+      wrap.className = 'phone-wrap invalid'; phone.setAttribute('aria-invalid', 'true'); pmsg.className = 'msg error';
+      pmsg.textContent = d ? `That’s ${d.length} digits — Indian mobile numbers have 10.` : 'Enter your mobile number to get a code.';
+      phone.focus(); return;
+    }
+    $('#sent-to').textContent = d; $('#phone-step').hidden = true; $('#code-step').hidden = false; $('#otp').focus();
+    let s = 30; const timer = setInterval(() => { s--; $('#timer').textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) clearInterval(timer); }, 1000);
+  });
+  $('#otp').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6); e.target.removeAttribute('aria-invalid'); $('#otp-msg').className = 'msg'; $('#otp-msg').textContent = 'Tip: your phone may fill this in for you.'; });
+  $('#code-step').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = $('#otp').value;
+    if (v.length < 6) { $('#otp').setAttribute('aria-invalid', 'true'); $('#otp-msg').className = 'msg error'; $('#otp-msg').textContent = `The code has 6 digits — ${6 - v.length} to go.`; return; }
+    $('#code-step').hidden = true; $('#success').hidden = false;
+  });
+  $('#change').addEventListener('click', () => { $('#code-step').hidden = true; $('#phone-step').hidden = false; phone.focus(); });
+</script>
+</body>
+</html>

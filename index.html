@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wagwell — Pet care &amp; vet booking</title>
+  <meta name="description" content="Check if it's urgent, find a vet who speaks your language, and book in clinic, on video or at home.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="utility"><div class="container">
+  <a href="urgent.html"><span class="dot"></span><span><span data-i18n="emerg">24/7 emergency line</span>: [EMERGENCY NUMBER]</span></a>
+  <div class="controls">
+    <label class="row" style="gap:.5rem"><span data-i18n="lang">Language</span>
+      <select class="pill-select js-lang"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option></select></label>
+    <div class="row" role="group" aria-label="Text size" style="gap:.25rem"><span data-i18n="size">Text size</span>
+      <button type="button" class="size-btn js-size" data-size="1" aria-pressed="true">A</button><button type="button" class="size-btn js-size" data-size="2" aria-pressed="false">A+</button><button type="button" class="size-btn js-size" data-size="3" aria-pressed="false">A++</button></div>
+    <button type="button" class="btn btn-light js-theme" aria-pressed="false" style="min-height:2.4rem">Dark mode</button>
+  </div>
+</div></div>
+
+<header class="site-header"><div class="container">
+  <a class="logo" href="index.html"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#E8692F"/><circle cx="24" cy="10" r="7" fill="#7FC3EA"/><circle cx="17" cy="23" r="8" fill="#A8673C"/></svg>Wagwell</a>
+  <nav class="main-nav" aria-label="Main">
+    <a href="index.html" aria-current="page" data-i18n="home">Home</a>
+    <a href="urgent.html" data-i18n="urgent">Urgent check</a>
+    <a href="vets.html" data-i18n="vets">Find a vet</a>
+    <a href="booking.html" data-i18n="book">Book</a>
+    <a href="health.html" data-i18n="health">Health hub</a>
+  </nav>
+  <div class="row"><a href="login.html" style="font-weight:700;color:var(--ink);padding:.6rem .25rem" data-i18n="signin">Sign in</a><a class="btn btn-dark" href="booking.html"><span data-i18n="bookBtn">Book a visit</span> ›</a></div>
+</div></header>
+
+<main id="main">
+  <section class="hero band-blush" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="pill" data-i18n="kicker">Pet care · Vet booking</span>
+        <h1 id="hero-title" data-i18n="heroTitle">Healthy tails. Happy humans.</h1>
+        <p class="lead" data-i18n="heroSub">Get emergency help in seconds, or book a routine visit in three steps — in clinic, on video or at home.</p>
+        <div class="row">
+          <a class="btn btn-dark btn-lg" href="booking.html"><span data-i18n="doorBCta">Book a visit</span> ›</a>
+          <a class="btn btn-light btn-lg" href="urgent.html" data-i18n="doorACta">Check urgency</a>
+        </div>
+      </div>
+      <!-- Original flat illustration: two dogs, a bone and sparkles -->
+      <svg class="hero-art" viewBox="0 0 560 380" aria-hidden="true">
+        <ellipse cx="300" cy="352" rx="240" ry="16" fill="#000" opacity=".06"/>
+        <path d="M60 70 l18 -18 M84 92 l24 -6 M70 40 l2 -24 M470 60 l14 -20 M492 86 l22 -4" stroke="#E8692F" stroke-width="6" stroke-linecap="round"/>
+        <g transform="translate(440 120) rotate(-25)" fill="#F2B544"><rect x="-26" y="-7" width="52" height="14" rx="7"/><circle cx="-26" cy="-8" r="9"/><circle cx="-26" cy="8" r="9"/><circle cx="26" cy="-8" r="9"/><circle cx="26" cy="8" r="9"/></g>
+        <path d="M452 236 q48 -34 34 -96" stroke="#A8673C" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <rect x="270" y="270" width="28" height="80" rx="14" fill="#8A5230"/><rect x="400" y="270" width="28" height="80" rx="14" fill="#8A5230"/>
+        <ellipse cx="360" cy="250" rx="108" ry="62" fill="#A8673C"/>
+        <rect x="306" y="280" width="28" height="72" rx="14" fill="#A8673C"/><rect x="430" y="276" width="28" height="74" rx="14" fill="#A8673C"/>
+        <ellipse cx="392" cy="232" rx="26" ry="18" fill="#8A5230"/>
+        <circle cx="262" cy="184" r="62" fill="#A8673C"/>
+        <ellipse cx="292" cy="150" rx="22" ry="42" fill="#6E3E22" transform="rotate(-18 292 150)"/>
+        <ellipse cx="226" cy="208" rx="36" ry="26" fill="#F3D9C2"/><ellipse cx="206" cy="198" rx="10" ry="8" fill="#1F1B1A"/>
+        <circle cx="258" cy="168" r="7" fill="#1F1B1A"/><path d="M222 226 q6 22 18 6" fill="#E9767A"/>
+        <path d="M286 226 q24 20 50 4" stroke="#E8692F" stroke-width="12" stroke-linecap="round" fill="none"/><circle cx="312" cy="238" r="7" fill="#F2B544"/>
+        <ellipse cx="118" cy="296" rx="54" ry="56" fill="#FFF8F2" stroke="#1F1B1A" stroke-width="4"/><ellipse cx="136" cy="286" rx="16" ry="12" fill="#1F1B1A"/>
+        <rect x="84" y="320" width="22" height="34" rx="11" fill="#FFF8F2" stroke="#1F1B1A" stroke-width="4"/><rect x="128" y="320" width="22" height="34" rx="11" fill="#FFF8F2" stroke="#1F1B1A" stroke-width="4"/>
+        <circle cx="118" cy="206" r="48" fill="#FFF8F2" stroke="#1F1B1A" stroke-width="4"/>
+        <ellipse cx="76" cy="200" rx="15" ry="32" fill="#1F1B1A" transform="rotate(14 76 200)"/><ellipse cx="160" cy="200" rx="15" ry="32" fill="#1F1B1A" transform="rotate(-14 160 200)"/>
+        <circle cx="102" cy="204" r="6" fill="#1F1B1A"/><circle cx="134" cy="204" r="6" fill="#1F1B1A"/><ellipse cx="118" cy="224" rx="9" ry="6" fill="#1F1B1A"/>
+        <path d="M88 252 q30 16 60 0" stroke="#E8692F" stroke-width="9" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="container section grid" aria-label="Choose a path" style="grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1.5rem">
+    <a class="door" href="urgent.html" style="background:var(--danger-soft)">
+      <span class="tile" style="color:#B8322A"><svg class="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+      <span class="title" data-i18n="doorA">Something’s wrong</span>
+      <span class="lead" data-i18n="doorAText">Answer a few quick questions. We’ll tell you how urgent it is and show clinics that are open right now.</span>
+      <span class="btn btn-danger cta"><span data-i18n="doorACta">Check urgency</span> ›</span>
+    </a>
+    <a class="door" href="booking.html" style="background:var(--peach)">
+      <span class="tile" style="color:#A8673C"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="4"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      <span class="title" data-i18n="doorB">Routine care</span>
+      <span class="lead" data-i18n="doorBText">Check-ups, vaccines, dental and grooming. See the price and the next free slot before you commit.</span>
+      <span class="btn btn-dark cta"><span data-i18n="doorBCta">Book a visit</span> ›</span>
+    </a>
+  </section>
+
+  <section class="container stack" aria-labelledby="ways-title" style="gap:1.6rem;padding-bottom:4.5rem">
+    <div class="row between"><h2 id="ways-title">Three ways to see a vet</h2><a class="btn btn-dark" href="vets.html">Find a vet ›</a></div>
+    <div class="grid">
+      <article class="way">
+        <svg width="112" height="112" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="27" cy="46" rx="12" ry="24" fill="#8A5230" transform="rotate(15 27 46)"/><ellipse cx="73" cy="46" rx="12" ry="24" fill="#8A5230" transform="rotate(-15 73 46)"/><circle cx="50" cy="52" r="30" fill="#FFF8F2"/><ellipse cx="62" cy="42" rx="10" ry="12" fill="#C98552"/><circle cx="40" cy="50" r="4" fill="#1F1B1A"/><circle cx="60" cy="50" r="4" fill="#1F1B1A"/><ellipse cx="50" cy="64" rx="11" ry="8" fill="#F3D9C2"/><ellipse cx="50" cy="60" rx="5" ry="3.5" fill="#1F1B1A"/><path d="M32 82 q18 10 36 0" stroke="#E8692F" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
+        <h3>In clinic</h3><p class="muted" style="color:var(--ink2)">Full exams, vaccines and lab tests. QR check-in, so no queue at the desk.</p><strong>From [PRICE]</strong>
+      </article>
+      <article class="way">
+        <svg width="112" height="112" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 34 L32 8 L46 28 Z" fill="#8C8F99"/><path d="M76 34 L68 8 L54 28 Z" fill="#8C8F99"/><circle cx="50" cy="54" r="29" fill="#B7BAC4"/><ellipse cx="40" cy="50" rx="4" ry="5" fill="#1F1B1A"/><ellipse cx="60" cy="50" rx="4" ry="5" fill="#1F1B1A"/><path d="M46 60 h8 l-4 5 z" fill="#E9767A"/><path d="M20 60 h16 M20 67 h16 M64 60 h16 M64 67 h16" stroke="#1F1B1A" stroke-width="2" stroke-linecap="round"/><rect x="70" y="72" width="22" height="16" rx="4" fill="#1F1B1A"/><path d="M92 76 l6 -4 v14 l-6 -4 z" fill="#1F1B1A"/></svg>
+        <h3>Video call</h3><p style="color:var(--ink2)">Advice on diet, behaviour and skin. Share photos in the call; prescription after.</p><strong>From [PRICE]</strong>
+      </article>
+      <article class="way">
+        <svg width="112" height="112" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="26" cy="38" rx="11" ry="20" fill="#1F1B1A" transform="rotate(-25 26 38)"/><ellipse cx="74" cy="38" rx="11" ry="20" fill="#1F1B1A" transform="rotate(25 74 38)"/><circle cx="50" cy="54" r="30" fill="#E4B886"/><ellipse cx="50" cy="66" rx="14" ry="10" fill="#FFF8F2"/><circle cx="40" cy="50" r="4" fill="#1F1B1A"/><circle cx="60" cy="50" r="4" fill="#1F1B1A"/><ellipse cx="50" cy="61" rx="5" ry="3.5" fill="#1F1B1A"/><path d="M45 70 q5 12 10 0" fill="#E9767A"/></svg>
+        <h3>Home visit</h3><p style="color:var(--ink2)">Best for anxious, senior or large pets. Track the vet’s arrival live.</p><strong>From [PRICE]</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="container" aria-labelledby="plan-title" style="padding-bottom:4.5rem">
+    <div class="panel panel-peach stack" style="gap:1.8rem">
+      <div class="stack" style="gap:.6rem;max-width:44rem"><h2 id="plan-title">A care plan that plans itself</h2>
+        <p class="lead">Tell us your pet’s age and breed once. Wagwell lays out the year — vaccines, deworming, dental — and reminds the whole family.</p></div>
+      <ol class="plan" aria-label="Example care plan for Bruno, 2026">
+        <li class="done"><span class="mark">✓</span><small><b>JAN</b></small><h3>Rabies booster</h3><span>Done · Dr. Menon</span></li>
+        <li class="done"><span class="mark">✓</span><small><b>APR</b></small><h3>Deworming</h3><span>Done</span></li>
+        <li class="done"><span class="mark">✓</span><small><b>JUL</b></small><h3>Dental check</h3><span>Done · no issues</span></li>
+        <li class="next"><span class="mark">!</span><small><b>OCT</b></small><h3>Annual check-up</h3><span>Due now — <a href="booking.html" style="color:inherit">book</a></span></li>
+        <li><span class="mark">·</span><small><b>NOV</b></small><h3>DHPP booster</h3><span>Reminder set</span></li>
+        <li><span class="mark">·</span><small><b>DEC</b></small><h3>Deworming</h3><span>Reminder set</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="container stack" aria-labelledby="inc-title" style="gap:1.6rem;padding-bottom:4.5rem">
+    <h2 id="inc-title">Built for every pet parent</h2>
+    <div class="grid" style="gap:1rem">
+      <div class="feature"><span class="badge" style="background:#FCE4DA">अ</span><div><h3>English, हिन्दी, मराठी</h3><p class="muted">Switch language from any page — your choice is remembered.</p></div></div>
+      <div class="feature"><span class="badge" style="background:#CDE8F8">◐</span><div><h3>Dark mode</h3><p class="muted">Easier on the eyes for late-night checks on a poorly pet.</p></div></div>
+      <div class="feature"><span class="badge" style="background:#FDF0C9">A+</span><div><h3>Bigger text in one tap</h3><p class="muted">Three text sizes; layouts reflow instead of cutting off.</p></div></div>
+      <div class="feature"><span class="badge" style="background:#DDF1E3">Aa</span><div><h3>Hyperlegible type</h3><p class="muted">Letterforms designed to stay distinct for low-vision readers.</p></div></div>
+      <div class="feature"><span class="badge" style="background:#EDE3FA">WA</span><div><h3>WhatsApp reminders</h3><p class="muted">Choose WhatsApp, SMS or email — or all three.</p></div></div>
+      <div class="feature"><span class="badge" style="background:#FCE4DA">+2</span><div><h3>Family sharing</h3><p class="muted">Everyone who looks after your pet gets the same reminders.</p></div></div>
+    </div>
+  </section>
+
+  <section class="container stack" aria-labelledby="price-title" style="padding-bottom:5rem">
+    <h2 id="price-title">Know the cost before you book</h2>
+    <div class="table-wrap"><table>
+      <caption class="sr-only">Starting prices by service and visit type</caption>
+      <thead><tr><th scope="col">Service</th><th scope="col">In clinic</th><th scope="col">Video call</th><th scope="col">Home visit</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">General check-up</th><td>[PRICE]</td><td>[PRICE]</td><td>[PRICE]</td></tr>
+        <tr><th scope="row">Vaccination</th><td>[PRICE] + vaccine</td><td class="muted">Not offered</td><td>[PRICE] + vaccine</td></tr>
+        <tr><th scope="row">Dental cleaning</th><td>[PRICE]</td><td class="muted">Not offered</td><td class="muted">Not offered</td></tr>
+        <tr><th scope="row">Grooming</th><td>[PRICE]</td><td class="muted">Not offered</td><td>[PRICE]</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted" style="font-size:.9rem">No booking fee. Pay online by UPI or card, or pay at the clinic.</p>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="container">
+  <div class="stack" style="gap:.2rem"><strong class="logo" style="font-size:1.3rem">Wagwell</strong><span>[CLINIC ADDRESS] · [PHONE]</span></div>
+  <nav aria-label="Footer"><a href="urgent.html">Urgent check</a><a href="vets.html">Find a vet</a><a href="booking.html">Book</a><a href="health.html">Health hub</a><a href="#main">Accessibility statement</a></nav>
+</div></footer>
+</body>
+</html>
